@@ -1,0 +1,16 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+.hero-unit{
+  background:#dddddd;
+  padding:30px 50px;
+}
+
+.form-actions{
+  margin:20px 0;
+}
