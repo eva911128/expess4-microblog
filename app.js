@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var SessionStore = require('express-mysql-session');//将session存放到数据库
+// var SessionStore = require('express-mysql-session');//将session存放到数据库,暂时未用，储存在服务器内存
 /*大概的意思就是 flash 是 session 中一个用于存储信息的特殊区域。消息写入
 到 flash 中，在跳转目标页中显示该消息。flash 是配置 redirect 一同使用的，
 以确保消息在目标页面中可用。
