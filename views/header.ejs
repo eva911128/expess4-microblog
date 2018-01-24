@@ -2,14 +2,48 @@
 <html lang="en">
 <meta charset="UTF-8">
 <title><%= title %> - Microblog</title>
-<link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
-<link rel='stylesheet' href='/stylesheets/style.css' />
-
+<link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+<link rel='stylesheet' href='/stylesheets/bootstrap-responsive.css' />
 <script src="/javascripts/jquery.min.js"></script>
 <script src="/javascripts/bootstrap.min.js"></script>
 <style type="text/css">
     body {
-        padding: 30px 60px;
+        padding: 60px;
     }
 </style>
 <body>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="/">Microblog</a>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="/">首页</a></li>
+                        <% if (!user) { %>
+                            <li><a href="/login">登录</a></li>
+                            <li><a href="/register">注册</a></li>
+                        <% } else {%>
+                            <li><a href="/logout">退出</a></li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="container" class="container">
+        <% if (success) { %>
+            <div class="alert alert-success">
+                <%= success %>
+            </div>
+            <% } %>
+            <% if (error) { %>
+            <div class="alert alert-error">
+                <%= error %>
+            </div>
+        <% } %>
+    </div>

@@ -3,7 +3,7 @@
  */
 var mysql = require('mysql');
 var db = {};
-db.query = function(sql,fun) {
+db.query = function(sql,callback) {
     var connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -12,24 +12,18 @@ db.query = function(sql,fun) {
     });
     connection.connect(function(err){
         if(err) {
-            console.log(err);
-            return false;
+            callback(err);
         }
         console.log('开启连接')
     })
 
     connection.query(sql,function(err,rows){
-        if(err) {
-            console.log(err);
-            return ;
-        }
-        fun(rows);
+        callback(err,rows);
     })
 
     connection.end(function(err){
         if(err){
-            console.log(err);
-            return;
+            callback(err);
         }
         console.log('连接关闭---')
     })

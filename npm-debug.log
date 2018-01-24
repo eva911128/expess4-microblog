@@ -10,7 +10,7 @@
 6 silly lifecycle express4-microblog@0.0.0~prestart: no script for prestart, continuing
 7 info lifecycle express4-microblog@0.0.0~start: express4-microblog@0.0.0
 8 verbose lifecycle express4-microblog@0.0.0~start: unsafe-perm in lifecycle true
-9 verbose lifecycle express4-microblog@0.0.0~start: PATH: C:\nodejs\node_modules\npm\bin\node-gyp-bin;F:\express4-microblog\node_modules\.bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\TortoiseSVN\bin;C:\nodejs\;C:\Program Files\TortoiseGit\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm;D:\驱动精灵\DriverGenius;D:\驱动精灵\DriverGenius\ksoft
+9 verbose lifecycle express4-microblog@0.0.0~start: PATH: C:\nodejs\node_modules\npm\bin\node-gyp-bin;F:\express4-microblog\node_modules\.bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\TortoiseSVN\bin;C:\nodejs\;C:\Program Files\TortoiseGit\bin;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Users\Administrator\AppData\Roaming\npm
 10 verbose lifecycle express4-microblog@0.0.0~start: CWD: F:\express4-microblog
 11 silly lifecycle express4-microblog@0.0.0~start: Args: [ '/d /s /c', 'node ./bin/www' ]
 12 silly lifecycle express4-microblog@0.0.0~start: Returned: code: 1  signal: null
