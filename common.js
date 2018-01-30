@@ -2,15 +2,6 @@
  * Created by Administrator on 2018/1/24.
  */
 var commonMethod = {};
-commonMethod.formatTime = function (format,time) {
-    var str;
-    if(time) {
-        str = new Date(time).pattern(format);
-    }else{
-       str =  new Date().pattern(format);
-    }
-    return str;
-}
 Date.prototype.pattern = function (fmt) {
     var o = {
         "M+": this.getMonth() + 1, //月份
@@ -43,6 +34,30 @@ Date.prototype.pattern = function (fmt) {
         }
     }
     return fmt;
+}
+
+commonMethod.formatTime = function (format,time) {
+    var str;
+    if(time) {
+        str = new Date(time).pattern(format);
+    }else{
+       str =  new Date().pattern(format);
+    }
+    return str;
+}
+commonMethod.checkLogin = function(req,res,next){
+    if(!req.session.user){
+        req.flash('error','用户未登录');
+        return res.redirect('/login');
+    }
+    next();
+}
+commonMethod.checkNotLogin = function(req,res,next){
+    if(req.session.user) {
+        req.flash('error','用户已登录');
+        return res.redirect('/');
+    }
+    next();
 }
 
 module.exports = commonMethod;

@@ -14,7 +14,7 @@ var flash = require('connect-flash');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-
+var commonMethods = require('./common');
 var app = express();
 
 // view engine setup
@@ -31,7 +31,7 @@ app.use(session({
     secret:'microblogbyvoid',
     name:'mySessionId',
     resave:false,// 是否每次都重新保存会话，建议false
-    saveUninitialized:true, //是否自动保存未初始化的会话，建议false
+    saveUninitialized:false, //是否自动保存未初始化的会话，建议false
     // store: new SessionStore({
     //     host: 'localhost',
     //     port: 3306,
@@ -48,6 +48,9 @@ app.use(function(req,res,next){
     console.log('app.user.local------------------------------');
     res.locals.user = req.session.user;
     res.locals.post = req.session.post;
+    console.log('res.locals.user============='+JSON.stringify(res.locals.user));
+    console.log('res.locals.post============='+JSON.stringify(res.locals.post));
+    console.log('res.locals.id============='+JSON.stringify(req.session.id));
 
     var error = req.flash('error');
     res.locals.error = error.length?error:null;
@@ -58,6 +61,15 @@ app.use(function(req,res,next){
     next();
 })
 
+app.use(function(req,res,next){
+    if(req.url == '/register' || req.url == '/login') {
+        commonMethods.checkNotLogin(req,res,next);
+    }else if(req.url == '/logout') {
+        commonMethods.checkLogin(req,res,next);
+    }else{
+        next();
+    }
+})
 app.use('/', index);
 app.use('/users', users);
 
