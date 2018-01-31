@@ -49,12 +49,9 @@ router.get('/u/:user',function(req,res,next){
 })
 
 
-// router.get('/register',checkNotLogin);
 router.get('/register', function(req, res, next) {
     res.render('register', { title: '用户注册' });
 });
-
-// router.get('/register',checkNotLogin);
 router.post('/register', function(req, res, next) {
     var md5 = crypto.createHash('md5');
     var name = req.body.username;
@@ -82,13 +79,11 @@ router.post('/register', function(req, res, next) {
     })
 });
 
-// router.get('/login',checkNotLogin);
+
 router.get('/login', function(req, res, next) {
     res.render('login', { title: '用户登入' });
 
 });
-
-// router.get('/login',checkNotLogin);
 router.post('/login', function(req, res, next) {
     var md5 = crypto.createHash('md5');
     var name = req.body.username;
@@ -108,7 +103,6 @@ router.post('/login', function(req, res, next) {
     })
 });
 
-// router.get('/logout',checkLogin);
 router.get('/logout',function(req,res,next){
     req.session.user = null;
     req.flash('success','退出成功');
