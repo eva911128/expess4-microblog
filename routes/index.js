@@ -13,7 +13,27 @@ router.get('/', function(req, res, next) {
             req.flash('error',err);
             data = [];
         }
-        res.render('index', { title: '首页',posts: data});
+        console.log(req.cookies)
+        var name = req.cookies.name;
+        var pwd = req.cookies.password;
+
+        if(req.cookies.name && req.cookies.password) {//实现自动登录
+            db.query('select * from user where name="'+name+'" and password="'+pwd+'"',function(err,_data){
+                if(err){
+                    req.flash('error',err);
+                    return res.redirect('/login');
+                }
+                if(_data.length == 0) {
+                    return res.redirect('/login');
+                }
+                req.session.user = _data[0];
+                res.render('index', { title: '首页',posts: data});
+            })
+        }else{
+            req.session.user = null;
+            res.render('index', { title: '首页',posts: data});
+        }
+
     })
 });
 router.post('/post',function(req,res,next){
@@ -98,6 +118,8 @@ router.post('/login', function(req, res, next) {
             return res.redirect('/login');
         }
         req.session.user = data[0];
+        res.cookie('name', data[0].name, {maxAge: 60 * 1000});
+        res.cookie('password', data[0].password, {maxAge: 60 * 1000});
         req.flash('success','登入成功');
         return res.redirect('/');
     })
@@ -105,6 +127,8 @@ router.post('/login', function(req, res, next) {
 
 router.get('/logout',function(req,res,next){
     req.session.user = null;
+    res.cookie('name', '', {maxAge: -1});
+    res.cookie('password', '', {maxAge: -1});
     req.flash('success','退出成功');
     res.redirect('/');
 })

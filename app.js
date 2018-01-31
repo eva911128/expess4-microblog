@@ -62,17 +62,6 @@ app.use(function(req,res,next){
 })
 
 app.use(function(req,res,next){
-
-    //测试cookies
-    console.log(req.cookies)
-    if(req.cookies.isVisit) {
-        console.log('欢迎再次访问')
-    }else{
-        res.cookie('isVisit', 1, {maxAge: 60 * 1000});
-        console.log('欢迎第一次访问')
-    }
-
-
     if(req.url == '/register' || req.url == '/login') {
         commonMethods.checkNotLogin(req,res,next);
     }else if(req.url == '/logout') {
